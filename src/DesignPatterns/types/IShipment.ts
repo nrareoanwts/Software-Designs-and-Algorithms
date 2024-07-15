@@ -6,3 +6,7 @@ export interface IShipmentData {
     toAddress: string,
     toZipCode: string
 };
+
+export interface IShipment {
+    ship(): string;
+}

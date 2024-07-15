@@ -1,4 +1,5 @@
 import PersistenceStub from "./Persistence";
+import { Options } from "../types/Options";
 
 interface FrontendData {
     shipmentId: number;
@@ -18,6 +19,14 @@ class FrontendStub {
             fromZipCode: PersistenceStub.getZipCode(),
             toAddress: '456 Elm St, Othertown, OS',
             toZipCode: PersistenceStub.getZipCode(),
+        };
+    }
+
+    public static getOptions(): Options {
+        return {
+            fragile: true,
+            doNotLeave: false,
+            returnReceipt: true
         };
     }
 }
