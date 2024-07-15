@@ -1,4 +1,5 @@
 import { IShipmentData } from './types/IShipment';
+import { ShipperFactory } from './Shipper';
 
 const PRICE = 39;
 
@@ -54,14 +55,15 @@ class Shipment {
     }
 
     // TODO: convert to $
-    private getCost(weight: number) {
-        const cost = weight * PRICE;
+    private getCost() {
+        const shipper = ShipperFactory.getShipper(this.fromZipCode);
+        const cost = shipper.getCost(this.weight);
         
         return cost.toFixed(2)
     }
 
     public ship(): string {
-        return `Shipment ID: ${this.shipmentId}, From: ${this.fromZipCode}, ${this.fromAddress}, To: ${this.toZipCode}, ${this.toAddress}, Cost: $${this.getCost(this.weight)}`;
+        return `Shipment ID: ${this.shipmentId}, From: ${this.fromZipCode}, ${this.fromAddress}, To: ${this.toZipCode}, ${this.toAddress}, Cost: $${this.getCost()}`;
     }
 }
 
